@@ -23,7 +23,7 @@ int main()
     int choice;
     while(true)
     {
-        cout<<"\nPress \n1.To PUSH.\n2.To POP.\n3.To SHOW.\n\nEnter: ";
+        cout<<"\nPress \n1.To PUSH.\n2.To POP.\n3.To SHOW.\n4.To EXIT\n\nEnter: ";
         cin>>choice;
         
         switch(choice)
@@ -31,6 +31,7 @@ int main()
             case 1:push();break;
             case 2:pop();break;
             case 3:show();break;
+            case 4:exit(1);
             default:cout<<"Invalid choice!";
         }
     }
