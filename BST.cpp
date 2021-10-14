@@ -23,7 +23,7 @@ struct node *create_node(int val)
 
 //functions prototype
 void insertion(struct node *root, int elem);
-void deletion(struct node *root, int elem);
+struct node *deletion(struct node *root, int elem);
 void display(struct node *root);
 void inorder(struct node *root);
 void preorder(struct node *root);
@@ -41,7 +41,7 @@ int main()
         switch(choice)
         {
             case 1: cout<<"Enter a value to be inserted: "; cin>>val; insertion(root,val); break;
-            case 2: cout<<"Enter a value to be deleted: "; cin>>val; deletion(root,val); break;
+            case 2: cout<<"Enter a value to be deleted: "; cin>>val; root=deletion(root,val); break;
             case 3: display(root); break;
             case 4: exit(1);
             default: cout<<"Invalid choice!";
@@ -84,7 +84,7 @@ void insertion(struct node *Node, int elem)
 }
 
 //deletion function
-void deletion(struct node *Node, int elem)
+struct node *deletion(struct node *Node, int elem)
 {
     //first we need to search the elem in the tree, 
     // if we get it then it lies in 3 cases
@@ -102,9 +102,9 @@ void deletion(struct node *Node, int elem)
     }
     //check if the elem is in the left-subtree, if yes then go to left-subtree
     else if(elem<Node->data)
-        deletion(root->left,elem);
+        Node->left=deletion(root->left,elem);
     else if(elem>Node->data)
-        deletion(Node->right,elem);
+        Node->right=deletion(Node->right,elem);
     else // if elem is found
     {
         //for node with 2 child nodes
@@ -114,7 +114,7 @@ void deletion(struct node *Node, int elem)
             temp=Find_max(root->left);     
             Node->data=temp->data;
             //now i have to delete the max elem we returned from left
-            deletion(Node->left,root->data);
+            Node->left=deletion(Node->left,root->data);
         }
         //for node with 1 or no child
         else
@@ -133,6 +133,7 @@ void deletion(struct node *Node, int elem)
         }
         
     }
+    return (Node);
 }
 
 //display
