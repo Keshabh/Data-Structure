@@ -61,5 +61,6 @@ int bin_search(int arr[],int start, int end, int k)
         else
           return bin_search(arr,start,mid-1,k);
     }
-    return -1;
+    else
+     return -1;
 }
